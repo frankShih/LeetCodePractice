@@ -1,3 +1,4 @@
+// 90%
 public class Solution {
     public int[] twoSum(int[] nums, int target) {
         HashMap<Integer,Integer> numPos = new HashMap<Integer, Integer>();

@@ -7,7 +7,8 @@ class Solution(object):
         """
         
         '''
-        hashTable = {}  #value:index
+        # 100%
+        hashTable = {}  #value:index (dict)
         for i in range(len(nums)):
                      
             if hashTable.get(target-nums[i], None)!=None:
@@ -19,6 +20,7 @@ class Solution(object):
         return []        
         '''
         
+        # 50%
         sortN = nums[:]     #list(nums)
         sortN.sort()
         head, tail = 0, len(nums)-1
