@@ -50,6 +50,7 @@ class Solution {
         }   
         
     }
+
     
     //90% 
     public void myQuickSelectPartition(int[] list, int left, int right, int pivotIndex){
