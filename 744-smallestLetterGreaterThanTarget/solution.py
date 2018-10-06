@@ -23,7 +23,7 @@ class Solution:
             counter += 1
         '''    
             
-        alphabets = {'a':0, 'b':1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7, 'i':8, 'j':9, 'k':10, 'l':11, 'm':12, 'n':13, 'o':14, 'p':15, 'q':16, 'r':17, 's':18, 't':19, 'u':20, 'v':21, 'w':22, 'x':23, 'y':24, 'z':25}
+        # alphabets = {'a':0, 'b':1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7, 'i':8, 'j':9, 'k':10, 'l':11, 'm':12, 'n':13, 'o':14, 'p':15, 'q':16, 'r':17, 's':18, 't':19, 'u':20, 'v':21, 'w':22, 'x':23, 'y':24, 'z':25}
         '''
         # 25%
         while True:
@@ -36,6 +36,7 @@ class Solution:
             
             counter += 1
         '''
+        '''
         # 36%
         for temp in letters:
             if alphabets[temp]>alphabets[target]:
@@ -43,4 +44,17 @@ class Solution:
                 return temp                    
             
         return letters[0]    
+        '''
+
+        # 99%
+        l, r = 0, len(letters)-1
         
+        while l<=r:
+            print(l, r)
+            m=l+(r-l)//2
+            if ord(letters[m]) <= ord(target):
+                l=m+1
+            else:
+                r=m-1
+        
+        return letters[l] if l<len(letters) else letters[0]
