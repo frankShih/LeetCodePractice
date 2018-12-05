@@ -105,7 +105,7 @@ class Solution:
 
     '''
     # 90%, bi-direction BFS with less nodes
-    word_dict = set(wordList)
+        word_dict = set(wordList)
         startQ = set()
         endQ = set()
         visited = set()
