@@ -66,8 +66,8 @@ class Solution:
             return dist
 
     
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
+        for i in range(rowN):
+            for j in range(colN):
                 result = helper(i, j, grid)
                 if result > best: best=result
                     
