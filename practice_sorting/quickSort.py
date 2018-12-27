@@ -1,23 +1,31 @@
-def myQuickSort(self, array, left, right):
+
+def swap(inputList, a, b):        
+    inputList[a], inputList[b] = inputList[b], inputList[a] 
+
+def myQuickSort(inputList, left, right):
         if left>=right: return
-        pivot=array[left]
+        pivot=inputList[left]
         i, j = left+1, right               
                 
         while True:
             while i<=right:
-                if pivot<array[i]:
+                if pivot<inputList[i]:
                     break    
                 i+=1                                
             while j>left:
-                if pivot>array[j]:
+                if pivot>inputList[j]:
                     break
                 j-=1
                 
             if i>=j: break
-            self.swap(array, i, j)
-        self.swap(array, left, j)    
-        self.myQuickSort(array, left, j-1)
-        self.myQuickSort(array, j+1, right)        
+            swap(inputList, i, j)
+        swap(inputList, left, j)    
+        myQuickSort(inputList, left, j-1)
+        myQuickSort(inputList, j+1, right)        
         
-    def swap(self, array, a, b):        
-        array[a], array[b] = array[b], array[a]        
+
+# if __name__ == "__main__":
+    
+inputList = [19,2,31,45,6,11,121,27]
+myQuickSort(inputList, 0, len(inputList)-1)
+print(inputList)       
