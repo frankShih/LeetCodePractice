@@ -38,16 +38,26 @@ class graph:
 
 
 # Create the dictionary with graph elements
-graph_elements = { "a" : {"b":2,"c":3},     #direction, a->b a->c
-                "b" : {"a":2, "d":4},
+indirectGraph = { "a" : {"b":12,"c":3},     #direction, a->b a->c
+                "b" : {"a":12, "d":4},
                 "c" : {"a":3, "d":5, "g":9},
-                "d" : {"e":6, "b":4, "d":5, "f":7},
+                "d" : {"e":6, "b":4, "c":5, "f":7},
                 "g" : {"e":8, "c":9},
                 "f" : {"d":7, "e":10},
                 "e" : {"d":6, "g":8, "f":10}
                 }
 
-g = graph(graph_elements)
+directGraph = { "a" : {"b":2,"c":3},     #direction, a->b a->c
+                "b" : {"a":2, "d":4},
+                "c" : {"d":5, "g":9},
+                "d" : {"e":6, "f":7},
+                "g" : {"e":8, "c":9},
+                "f" : {"d":7, "e":10},
+                "e" : {"d":6, "f":10}
+                }
+
+
+g = graph(indirectGraph)
 if __name__ == "__main__":
     
     print(g.edges())

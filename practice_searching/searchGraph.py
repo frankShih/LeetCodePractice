@@ -13,10 +13,10 @@ def dfs(graph, start, visited = None):
             dfs(graph, next, visited)
     return visited
 
-print(graph.graph_elements)
+print(graph.indirectGraph)
 
 print("DFS traversal")
-dfs(graph.graph_elements, "a", None)
+dfs(graph.indirectGraph, "a", None)
 
 
 def bfs(graph, startnode):
@@ -35,6 +35,5 @@ def bfs(graph, startnode):
 
 
 print("BFS traversal")
-bfs(graph.graph_elements, "a")
-
+bfs(graph.indirectGraph, "a")
 
