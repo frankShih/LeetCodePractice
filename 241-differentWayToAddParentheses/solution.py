@@ -22,6 +22,7 @@ class Solution:
         
         for i in range(len(operation)):
             if operation[i] in operator:
+                # treat operator as split point
                 left=self.traversal(operation[:i])
                 right=self.traversal(operation[i+1:])
                 
@@ -39,6 +40,7 @@ class Solution:
         return result
    
     def parser(self, chars):
+        #parse string in to [int, operator] collection
         result=[]
         temp=""
         operator=set(['+', '-', '*', '/'])
@@ -51,6 +53,7 @@ class Solution:
                 temp=""
                 
         result.append(temp)
+        # when the first value is negative
         if not(result[0].isnumeric()):
             result.insert(0, int(result[0]+result[1]))
             del result[1:3]
