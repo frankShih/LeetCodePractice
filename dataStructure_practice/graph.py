@@ -1,3 +1,5 @@
+import random
+
 class graph:
     def __init__(self,gdict=None):
         if gdict is None:
@@ -34,6 +36,43 @@ class graph:
        if vrtx not in self.gdict:
             self.gdict[vrtx] = {}
 
+    def randGenGraph(self, nVert, nEdge):
+        weights = [int(random.random()*10) for i in range(nEdge)]
+        verts = [chr(97+i) for i in range(nVert)]
+        self.gdict = {}
+        visit = set()
+        
+        for w in weights:
+            fromV, toV = verts[int(random.random()*nVert)], verts[int(random.random()*nVert)]
+            while fromV==toV or (fromV, toV) in visit:
+                toV = fromV
+                fromV = verts[int(random.random()*nVert)]
+                # print(fromV)
+
+            visit.add((fromV, toV))
+            if not fromV in self.gdict:
+                self.gdict[fromV] = {}
+
+            self.gdict[fromV][toV] = w
+
+        # print(self.gdict)
+
+    def checkLoop(self):
+        for v in self.gdict:
+            
+            Q = [[v]]
+            while Q:
+                path = Q.pop(0)
+                for n in self.gdict[v]:
+                    # print(v, n)
+                    if n in path:
+                        print(path)
+                        return True
+                        break
+                    Q.append(path+[n])    
+
+
+
 
 
 
@@ -57,13 +96,17 @@ directGraph = { "a" : {"b":2,"c":3},     #direction, a->b a->c
                 }
 
 
-g = graph(indirectGraph)
+g = graph(directGraph)
 if __name__ == "__main__":
-    
-    print(g.edges())
-    print(g.getVertices())
-    g.addVertex("f")
-    print(g.getVertices())
-    g.AddEdge('a','e', 7)
-    g.AddEdge('f','c', 8)
-    print(g.edges())
+    print(g.gdict)
+    print("edges:", g.edges())
+    print("vertices:", g.getVertices())
+    # g.addVertex("f")
+    # print(g.getVertices())
+    # g.AddEdge('a','e', 7)
+    # g.AddEdge('f','c', 8)
+    # print("adding edges:", g.edges())
+    g.randGenGraph(5, 5)
+    print("random graph", g.gdict)
+    print("show loop in graph:", g.checkLoop())
+
