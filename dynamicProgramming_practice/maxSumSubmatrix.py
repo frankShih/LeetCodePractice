@@ -1,4 +1,6 @@
 import sys
+
+
 def maxSumSubmatrix(matrix):
     if not matrix or not matrix[0]:
         return 0
@@ -13,15 +15,16 @@ def maxSumSubmatrix(matrix):
             for k in range(col):
                 # dp[k:] - sum from row 'i~j-1' & col 'k:'
                 # dp[:k] - sum from row 'i~j' & col ':k'
-                # transform 2-d matrix to maxSumSubsequence problem 
+                # transform 2-d matrix to maxSumSubsequence problem
                 dp[k] += matrix[j][k]
                 curr += dp[k]
-                if curr<0:
+                if curr < 0:    #can not obtain larger value from previous part
                     curr = dp[k]
-                best = curr if curr>best else best
+                best = curr if curr > best else best
 
-    print("O(N^3) solution: ", best)  
+    print("O(N^3) solution: ", best)
 
-    
-data = [[0, -2, -7, 0],[9, 2, -6, 2], [-4, 1, -4, 1], [-1, 8, 0, -2], [1, 2, 3, 4]]
-maxSumSubmatrix(data)            
+
+data = [[0, -2, -7, 0], [9, 2, -6, 2],
+        [-4, 1, -4, 1], [-1, 8, 0, -2], [1, 2, 3, 4]]
+maxSumSubmatrix(data)
