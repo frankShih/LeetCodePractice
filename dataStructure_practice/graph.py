@@ -57,19 +57,18 @@ class graph:
 
         # print(self.gdict)
 
-    def checkLoop(self):
-        for v in self.gdict:
-            
-            Q = [[v]]
-            while Q:
-                path = Q.pop(0)
-                for n in self.gdict[v]:
-                    # print(v, n)
-                    if n in path:
-                        print(path)
-                        return True
-                        break
-                    Q.append(path+[n])    
+    def checkLoop(self, startNode, visit):
+        # visit.append(startNode)
+        if not startNode in self.gdict:
+            return None
+        for v in self.gdict[startNode]:
+            if v in visit:
+                ind = visit.index(v)
+                print(visit[ind:])
+                # return True
+            else:
+                self.checkLoop(v, visit+[v])    
+              
 
 
 
@@ -106,7 +105,8 @@ if __name__ == "__main__":
     # g.AddEdge('a','e', 7)
     # g.AddEdge('f','c', 8)
     # print("adding edges:", g.edges())
-    g.randGenGraph(5, 5)
+    g.randGenGraph(5, 7)
     print("random graph", g.gdict)
-    print("show loop in graph:", g.checkLoop())
+    for v in g.gdict:
+        print("show loop start from", v, ": ", g.checkLoop(v, [v]))
 
