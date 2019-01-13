@@ -6,7 +6,6 @@ class Solution:
         """
 
         l, r = 0, len(nums)-1
-        
         while l<r:
             # print(l, r)
             m = l + (r-l)//2
@@ -15,14 +14,20 @@ class Solution:
             
             if nums[m]==nums[m+1]:
                 l=m+2
-        # 56%
-        '''
-            elif nums[m]==nums[m-1]:    #index out of range
-                r=m
-            else :
-                return nums[m]
-        '''
-        # 100%
+            # 56%
+            # elif nums[m]==nums[m-1]:    #index out of range
+            #     r=m
+            # else :
+            #     return nums[m]
             else:
+            # 100%
                 r=m
         return nums[l]
+        '''
+        
+        result=0
+        for n in nums:
+            result^=n
+            
+        return result   
+        '''
