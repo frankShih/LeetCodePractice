@@ -7,7 +7,7 @@ class Solution:
         """
         l, r = 0, len(nums)-1
 
-    # 20%
+    # O(N) 20%
         if not(len(nums)): return [-1, -1]
         '''
         while l<r and nums[l]!=nums[r]:
@@ -17,7 +17,7 @@ class Solution:
         return [l, r] if nums[l]==target else [-1, -1]
         '''
 
-    # 72%
+    # O(log(N)) 72%
         l = self.binarySearch(nums, target)
         r = self.binarySearch(nums, target+1)-1
         # print(l, r)
