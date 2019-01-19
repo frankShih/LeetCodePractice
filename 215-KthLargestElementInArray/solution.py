@@ -15,7 +15,7 @@ class Solution(object):
         return nums[-k]
 
 
-    # 3%
+    # 3% O(N*log(N)), obtain O(N*log(K)) using heapSort
     def myQuickSort(self, array, left, right):
         if left>=right: return
         pivot=array[left]
