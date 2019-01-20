@@ -12,7 +12,6 @@
 
         pLen = len(pattern)
         mapping = {}
-        revMapping = {}
 
         for word in words:
             wLen = len(word)
@@ -20,16 +19,14 @@
                 continue
 
             mapping.clear()
-            revMapping.clear()
 
             for i in range(wLen):
                 if pattern[i] not in mapping:
-                    if word[i] in revMapping:
+                    if word[i] in mapping.values():
                         # diff patterns map to same value
                         break
                     
                     mapping[pattern[i]] = word[i]
-                    revMapping[word[i]] = pattern[i]
                 elif mapping[pattern[i]] != word[i]:
                     # same pattern map to diff values   
                     break
