@@ -3,27 +3,41 @@ class Solution:
         """
         :type nums: List[int]
         :rtype: bool
-        """        
-        # 80%
-        seq = []
-        cur = float('-inf')
-        temp = []
-        
-        for i in range(len(nums)):
-            if nums[i]>=cur:
-                temp.append(nums[i])                
-            else:
-                seq.append(temp)
-                if len(seq)>1: return False
-                temp=[nums[i]]
-                
-            cur=nums[i]    
-        seq.append(temp)
-        
-        # print(seq)
-        
-        if len(seq)<2: return True
-        if len(seq[0])==1 or seq[0][-2]<seq[1][0]: return True
-        if len(seq[1])==1 or seq[0][-1]<seq[1][1]: return True
-            
-        return False
+        """
+        if not nums:
+            return True
+
+        length = len(nums)
+
+        '''
+        # forward checking O(N), 60%
+        p = None
+        for i in range(length-1):
+            if nums[i] > nums[i+1]:
+                if p is not None:
+                    return False
+                p = i
+        # 1. no reverse occured
+        # 2. reverse happened at start/end of array
+        # 3. the values around still satisfied the condition
+        #    (replace current/next value)
+        return (p is None or \
+                p == 0 or \
+                p == len(nums)-2 or \
+                nums[p-1] <= nums[p+1] or \
+                nums[p] <= nums[p+2])
+        '''
+
+        # more readable O(N), 24%
+        count = 0
+        for i in range(1, length):
+            if nums[i] < nums[i - 1]:
+                count += 1
+                # at least 2 values are affected by incoming num, so change it
+                # otherwise (happened at the beginning), ignore it
+                if i >= 2 and nums[i] < nums[i - 2]:
+                    nums[i] = nums[i - 1]
+                else:
+                    nums[i-1] = nums[i]
+
+        return count<=1

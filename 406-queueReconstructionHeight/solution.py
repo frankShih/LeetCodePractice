@@ -1,19 +1,21 @@
-class Solution(object):
+class Solution:
     def reconstructQueue(self, people):
         """
         :type people: List[List[int]]
         :rtype: List[List[int]]
         """
+        # sort by height descending & numPeople ascending O(N*log(N)), 82%
+        length = len(people)
 
-        # 99%
-        people=sorted(people ,key=lambda l:(l[0], -l[1]), reverse=True)        
-        length = len(people)                
+        if length<2:
+            return people
 
-        if len(people)<2:   return people
+        # people=sorted(people ,key=lambda l:(l[0], -l[1]), reverse=True)
+        people=sorted(people ,key=lambda l:(-l[0], l[1]))
 
-        result = [people[0]]
-        for i in range(1, length):            
+        result = []
+        for person in people:
             # print(result)
-            result.insert(people[i][1], people[i])
-                                    
+            result.insert(person[1], person)
+
         return result

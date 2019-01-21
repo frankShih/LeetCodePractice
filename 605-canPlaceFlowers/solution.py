@@ -6,18 +6,17 @@ class Solution(object):
         :rtype: bool
         """
         counter = 0
-
         '''
-        # 80%        
+
+        # greedy solution. check indices nearby O(N), 80%
         flowerbed.insert(0, 0)
         flowerbed.insert(len(flowerbed), 0)
         ind=1
-            
+
         while ind<len(flowerbed)-1:
             if flowerbed[ind]:
                 ind+=2
             else:
-                
                 if not(flowerbed[ind-1] or flowerbed[ind+1]):
                     # print(ind)
                     flowerbed[ind]=1
@@ -25,15 +24,11 @@ class Solution(object):
                     ind+=2
                 else:
                     ind+=1
-        
-                
-        # print(flowerbed)
-        
+
         return counter>=n
         '''
 
-
-        # 50%
+        # same solution without list-extension O(N), 60%
         ind=0
         while ind<len(flowerbed):
             if flowerbed[ind]==0 and (ind==0 or flowerbed[ind-1]==0) and (ind==len(flowerbed)-1 or flowerbed[ind+1]==0):
@@ -42,9 +37,8 @@ class Solution(object):
             if counter>=n:
                 return True
             ind+=1
-        
-        return False
 
+        return False
 
 
 
