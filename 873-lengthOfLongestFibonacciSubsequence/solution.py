@@ -7,7 +7,7 @@
 
         if not A:
             return 0
-'''
+        '''
         # DP solution O(N^2)
         d = {a:i for i, a in enumerate(A)}
 
@@ -26,7 +26,7 @@
                     dp[j][k] = dp[d[missing]][j]+1
                     ret = max(dp[j][k], ret)
         return ret
-'''
+        '''
 
         # brute force solution O(N^2+log(M))
         S = set(A)
