@@ -34,9 +34,9 @@ class Solution:
             if nums[i] < nums[i - 1]:
                 count += 1
                 # at least 2 values are affected by incoming num, so change it
-                # otherwise (happened at the beginning), ignore it
                 if i >= 2 and nums[i] < nums[i - 2]:
                     nums[i] = nums[i - 1]
+                # otherwise (happened at the beginning / previous value too large)
                 else:
                     nums[i-1] = nums[i]
 
