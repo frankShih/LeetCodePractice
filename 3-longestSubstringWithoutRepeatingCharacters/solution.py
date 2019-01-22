@@ -4,29 +4,29 @@
         :type s: str
         :rtype: int
         """
-        
+
         if not s:
             return 0
 
-        # sliding window that keeps track of currentBest O(N^2)   
+        # sliding window that keeps track of currentBest O(N^2)
         curSet = set()
         curInd = [0, 0]
         bestInd = [0, 0]
-        
+
         for i in range(len(s)):
             if not s[i] in curSet:
-                curInd[1]+=1
+                curInd[1] += 1
                 curSet.add(s[i])
-            
-                if curInd[1]-curInd[0]>bestInd[1]-bestInd[0]:
+
+                if curInd[1]-curInd[0] > bestInd[1]-bestInd[0]:
                     bestInd = curInd
             else:
                 for j in range(i-1, -1, -1):
-                    if s[j]==s[i]:
+                    if s[j] == s[i]:
                         curSet = set(s[j+1:i+1])
                         curInd = [j+1, i+1]
                         break
-        
+
         return bestInd[1]-bestInd[0]
         '''
 
@@ -44,4 +44,3 @@
         
         return result
         '''
-

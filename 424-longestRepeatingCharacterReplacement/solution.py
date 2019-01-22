@@ -21,7 +21,10 @@
             # get current majority char
             maxCount = max(maxCount, wordCount[indS-asciiBase])
 
-            while endInd-startInd+1>k+maxCount:  # exceed threshold
+            while endInd-startInd+1>k+maxCount:  
+                # exceed threshold 
+                # 1. incoming char is not char of maxCount 
+                # 2. incoming char is new char of maxCount 
                 wordCount[ord(s[startInd])-asciiBase]-=1
                 startInd+=1
 
