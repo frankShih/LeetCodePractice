@@ -68,10 +68,44 @@ assign_value(list1, list2)
 print(list1)    # like 'passed by pointer'
 
 def copy_list(l):
-    return l[:]
+    # return l[:]
+    return list(l)
 
-my_list = [1, 2, 3]
+my_list = [1, 2, [3, 4]]
 new_list = copy_list(my_list)
 print(new_list)
 print(my_list == new_list)
+print(id(my_list) == id(new_list))
 print(my_list is new_list)
+
+
+import copy
+
+'''
+shallow copy creates object with the reference of original elements
+shallow copy doesn't create copy of nested objects,
+instead it just copies the reference of nested objects.
+'''
+old_list = [[1, 1, 1], [2, 2, 2], [3, 3, 3]]
+new_list = copy.copy(old_list)
+old_list.append([4, 4, 4])
+
+print("Old list:", old_list)
+print("New list:", new_list)
+
+old_list[1][1] = 'AA'
+
+print("Old list:", old_list)
+print("New list:", new_list)
+
+
+'''
+A deep copy creates a new object and recursively adds the copies of
+nested objects present in the original elements.
+'''
+new_list = copy.deepcopy(old_list)
+
+old_list[1][0] = 'BB'
+
+print("Old list:", old_list)
+print("New list:", new_list)
