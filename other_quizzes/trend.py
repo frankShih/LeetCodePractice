@@ -86,6 +86,8 @@ def solution(A):
 
     # print(maxCost)
     '''
+
+    '''
     # DP solution2
     maxCost = [0]*(31)
 
@@ -97,9 +99,11 @@ def solution(A):
 
     # print([x for x in range(31)])
     # print(maxCost)
-    # return min(maxCost[-1], price30)
+    return min(maxCost[-1], price30)
+    '''
 
-    def helper(A, ind):
+    '''
+    def helper(A, ind):     # brute force DFS
         if ind>=len(A):
             return 0
 
@@ -116,12 +120,43 @@ def solution(A):
         print(oneCost, sevenCost)
         return min(oneCost, sevenCost)
 
-
     return min(helper(A, 0), price30)
+    '''
+
+    # brute force BFS
+    que = [[]]
+    best = float('inf')
+    while que:
+        records = que.pop(0)
+        print(records)
+
+        ind = len(records)
+        if ind ==30:
+            temp = sum(records)
+            best = temp if temp<best else best
+            continue
+
+        if ind+1 in A:
+            temp=0
+            if ind>=6:
+                temp=sum(records[ind-6:ind])
+            else:
+                temp=sum(records[:ind]) if temp else 0
+
+            que.append(records+[2])
+
+            if temp>7-2 and temp%2==0:
+                for i in range(ind-6, ind):
+                    records[i]=0
+                que.append(records+[7])
+
+        else:
+            que.append(records+[0])
+
+    return min(best, price30)
 
 
-
-print(solution([1, 2, 3, 4, 7, 11, 12, 13]))  # 13
-print(solution([1, 2, 3, 7, 8, 9, 11, 12, 13]))  # 13
-print(solution([ 6, 7, 10, 11, 12, 13, 14, 17, 18  ]))  # 14
+# print(solution([1, 2, 3, 4, 7, 11, 12, 13]))  # 13
+# print(solution([1, 2, 3, 7, 8, 9, 11, 12, 13]))  # 13
+# print(solution([ 6, 7, 10, 11, 12, 13, 14, 17, 18  ]))  # 14
 print(solution([1, 2, 3, 7, 9, 10, 11, 12, 16, 17, 18, 19, 22, 24, 26, 28]))
