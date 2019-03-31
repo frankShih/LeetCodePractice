@@ -3,7 +3,9 @@ Creates objects without having to specify the exact class
 
 Provide an interface, keep implementation away from the caller
 主要精神：inheritance(繼承)
+
 簡單工廠管理物件的創造，如果 client 要取得物件，只要給簡單工廠正確的參數就可以。
+[尚未將繼承觀念引入，純粹隔離 consumer & producer]
 """
 
 class idCard(object):
@@ -82,7 +84,6 @@ class idCardFactory(object):
 
         self.counter += 1
         return card
-
 
 
 if __name__ == "__main__":

@@ -4,6 +4,12 @@ Provides a way to encapsulate a group of individual factories.
 
 in java: parentFactory(abstract), childFactories, (product interface), products
 主要精神：composition(合成) - 多個零件工廠組裝出最後產品
+如果需要一組可以隨時抽換的元件，並且希望可以簡單地 一次抽換
+
+AbstractFactory 從"建立可抽換的一組物件"角度來看這個模式，
+如果將焦點放在"使用抽象工廠物件的方法"上，因為定義了樣版流程，
+流程中真正需要實際物件運作的部份，則呼叫工廠物件來建立，
+所以從 流程 的觀點來看，又稱之為Template-callback模式。
 """
 
 

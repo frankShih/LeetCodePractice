@@ -1,7 +1,8 @@
 '''
 Maintains a list of dependents and notifies them of any state changes.
 
-主要精神：register & notify
+主要精神：統一管理 registeration & notification
+
 寫一些跟狀態變化有關的處理時，Observer Pattern 很好用
 重點在 Observer Interface 以及具體實作的Observer類別。另外，也需要設計被觀察者。
 observer, concrete observer, Subject, ConcreteSubject (被觀察者)
