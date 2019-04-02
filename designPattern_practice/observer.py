@@ -32,17 +32,17 @@ class Subject(object):
 class NewsStation(Subject):
     def __init__(self, naming=''):
         super().__init__()
-        self._naming = naming
+        self._naming = naming   # underline -> private property
 
     @property
     def naming(self):
         return self._naming
 
     @naming.setter
-    def naming(self, val):
+    def naming(self, val):  #the assignment call setter automatically
         self._naming = val
         print("name is changing~~")
-
+        # do some checking here
         self.sendNews("the station change name to: {}".format(self.naming))
         return self._naming
 
