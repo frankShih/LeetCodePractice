@@ -29,10 +29,20 @@ class Subject(object):
         #         obs.update(self)
         pass
 
+'''
+若是用 from xx import
+單底線的 member 不會被 import
+但還是可以用 from xx import _single 強制import
+'''
+
 class NewsStation(Subject):
     def __init__(self, naming=''):
         super().__init__()
-        self._naming = naming   # underline -> private property
+        self._naming = naming
+        # single underscore -> protected property (child._singleProperty)
+        #   軟性的private
+        # double underscore -> private property (child._Parent__doubleProperty)
+        #   加上雙底線 產生 name mangling 效果
 
     @property
     def naming(self):
