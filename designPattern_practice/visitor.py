@@ -20,46 +20,53 @@ The Open-Closed Principle
 在擴充程式時沒有修改現有類別的需要正是"修改時要關閉"。
 '''
 
+
 class Customer:
     def doCustomer(self):
         print("customer services:")
-    
+
     def pay(self):
         print("checkout")
-    
-    def accept(self, visitor): pass
+
+    def accept(self, visitor):
+        pass
+
 
 class Member(Customer):
     def doMember(self):
         print("member services ~~")
-    
+
     # accept 方法的呼叫為: acceptor.accept(visitor)
     def accept(self, visitor):
         visitor.visitMember(self)
-    
+
+
 class VIP(Customer):
     def doVIP(self):
         print("VIP services !!!")
-        
+
     def accept(self, visitor):
         visitor.visitVIP(self)
+
 
 class VisitorImpl:
     # visit 方法的呼叫為: visitor.visit(acceptor)
     def visitMember(self, member):
         member.doMember()
-    
+
     def visitVIP(self, vip):
         vip.doVIP()
-    
+
+
 class Service:
     def __init__(self):
         self.visitor = VisitorImpl()
-    
+
     def doService(self, customer):
         customer.doCustomer()
         customer.accept(self.visitor)
         customer.pay()
+
 
 service = Service()
 service.doService(VIP())
@@ -75,14 +82,18 @@ print('=====================================')
 class Node(object):
     pass
 
+
 class A(Node):
     pass
+
 
 class B(Node):
     pass
 
+
 class C(A, B):
     pass
+
 
 class Visitor(object):
     def visit(self, node, *args, **kwargs):
@@ -115,9 +126,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
